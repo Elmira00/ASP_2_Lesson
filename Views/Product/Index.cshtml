@@ -1,0 +1,38 @@
+﻿@model ProductViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a asp-action="Add" asp-controller="Product">
+        <button class="addBtn">Add Product</button>
+    </a>
+
+    @foreach (var item in Model.Products)
+    {
+        <section class="productContainer" style="display:inline-block;margin:20px;background-color:bisque;border-radius:10px;padding:10px">
+            <section class="imageArea">
+                <img style="display:inline-block;width:100px;height:100px"  src="@item.ImagePath" alt="productImg">
+            </section>
+            <p>@item.Name</p>
+            <p id="category">@item.Category</p>
+            <p id="price">@item.Price ₼</p>
+            <a asp-action="Delete" asp-controller="Product" asp-route-myid="@item.Id">
+                <button>DELETE</button>
+            </a>
+            <a asp-action="Update" asp-controller="Product" asp-route-myid="@item.Id">
+                <button id="update">UPDATE</button>
+            </a>
+        </section>
+    }
+</body>
+
+</html>
